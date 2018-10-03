@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.Identity.Client;
 using System.Security.Claims;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -99,26 +98,30 @@ namespace Swizkon.Infrastructure.Authentication
                 return Task.FromResult(0);
             }
 
-            public async Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedContext context)
+            public  Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedContext context)
             {
                 // Use MSAL to swap the code for an access token
                 // Extract the code from the response notification
                 var code = context.ProtocolMessage.Code;
 
                 string signedInUserID = context.Principal.FindFirst(ClaimTypes.NameIdentifier).Value;
-                TokenCache userTokenCache = new MSALSessionCache(signedInUserID, context.HttpContext).GetMsalCacheInstance();
-                ConfidentialClientApplication cca = new ConfidentialClientApplication(AzureAdB2COptions.ClientId, AzureAdB2COptions.Authority, AzureAdB2COptions.RedirectUri, new ClientCredential(AzureAdB2COptions.ClientSecret), userTokenCache, null);
-                try
-                {
-                    AuthenticationResult result = await cca.AcquireTokenByAuthorizationCodeAsync(code, AzureAdB2COptions.ApiScopes.Split(' '));
 
-                    context.HandleCodeRedemption(result.AccessToken, result.IdToken);
-                }
-                catch
-                {
-                    //TODO: Handle
-                    throw;
-                }
+                // return Task.FromResult(0);
+                return Task.CompletedTask;
+
+                // TokenCache userTokenCache = new MSALSessionCache(signedInUserID, context.HttpContext).GetMsalCacheInstance();
+                // ConfidentialClientApplication cca = new ConfidentialClientApplication(AzureAdB2COptions.ClientId, AzureAdB2COptions.Authority, AzureAdB2COptions.RedirectUri, new ClientCredential(AzureAdB2COptions.ClientSecret), userTokenCache, null);
+                // try
+                // {
+                //     AuthenticationResult result = await cca.AcquireTokenByAuthorizationCodeAsync(code, AzureAdB2COptions.ApiScopes.Split(' '));
+
+                //     context.HandleCodeRedemption(result.AccessToken, result.IdToken);
+                // }
+                // catch
+                // {
+                //     //TODO: Handle
+                //     throw;
+                // }
             }
         }
     }
