@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Swizkon.Infrastructure</id>
+    <version>1.3.0</version>
+    <authors>Swizkon</authors>
+    <owners>Swizkon</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Utils for dotnet core apps</description>
+    <releaseNotes>Publish to nuget</releaseNotes>
+    <copyright>Copyright 2018 - Swizkon</copyright>
+    <tags>infra, boilerplate, dotnet core</tags>
+  </metadata>
+  <files>
+    <file src="package_root\publish_output\Swizkon.Infrastructure.dll" target="lib\netstandard2.0\Swizkon.Infrastructure.dll" />
+  </files>
+</package>
