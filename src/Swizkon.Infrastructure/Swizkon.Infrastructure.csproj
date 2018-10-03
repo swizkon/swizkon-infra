@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <Version>1.2.0</Version>
+    <Version>1.2.0-preview</Version>
     <PackageTags>Boilerplate</PackageTags>
     <Authors>Jonas Jerndin</Authors>
     <Description>This library contains some utils often used when building apps.</Description>
